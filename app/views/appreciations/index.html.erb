@@ -1,0 +1,24 @@
+<% content_for :javascript do %>
+  <script>
+    (function($) {
+      var names = <%= raw User.all.map(&:name).to_json %>
+      $('#name').suggest(names, {
+        suggestionColor: '#fff',
+        moreIndicatorText: ''
+      });
+    })(jQuery)
+  </script>
+<% end %>
+
+<% if @for.present? %>
+  <h2>Appreciations for <%= @for %>.</h2>
+<% end %>
+<% if @by %>
+  <h2>Appreciations by <%= @by %>.</h2>
+<% end %>
+
+<ul class="tileset js-masonry">
+  <%= render partial: 'shared/appreciation_card', collection: @appreciations %>
+</ul>
+
+<%= will_paginate @appreciations %>

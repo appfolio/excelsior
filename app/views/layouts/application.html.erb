@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="3660">
+  <%= favicon_link_tag("favicon.png") %>
+  <%= favicon_link_tag("favicon.png", rel: 'apple-touch-icon', type: 'image/png') %>
+  <title>Excelsior!</title>
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700|Playfair+Display+SC:900" rel="stylesheet" type="text/css">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <link href="//code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css">
+  <%= javascript_include_tag "application" %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container">
+    <% if ENV["DEPLOYMENT"] == "stage" %>
+      <div class="stage-bar">STAGING ENVIRONMENT</div>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <div class="header clearfix">
+        <div style="float:left;">
+          <a href="/faqs">What is This?</a>&nbsp;&nbsp;
+          <a href="<%= ENV['SLACK_CHANNEL_URL'] %>" target="_blank">Slack Channel</a>
+        </div>
+
+        <div class="login">Logged in as <strong><%= current_user.email %></strong>&nbsp;&nbsp;&nbsp;
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        </div>
+        <div class="navbar-brand"><a href="/"><%= image_tag "brand.png" %></a></div>
+
+        <div>
+          <nav>
+            <ul class="navigation">
+              <li role="presentation" class="<%= active?('new', 'appreciations') %>">
+                <%= link_to 'New Appreciation', new_appreciation_path, class: 'button button--small' %>
+              </li>
+              <li role="presentation" class="<%= active?('new', 'feedbacks') %>">
+                <%= link_to 'New Feedback', new_feedback_path, class: 'button button--small' %>
+              </li>
+              <li role="presentation" class="<%= active?('show', 'users') %>" style="float:right;"><%= link_to 'My Messages', user_path(current_user), class: 'lite-button' %></li>
+            </ul>
+
+          </nav>
+        </div>
+      </div>
+    <% else %>
+      <div class="header clearfix center">
+        <div class="navbar-brand"><%= image_tag "brand.png" %></div>
+      </div>
+    <% end %>
+
+    <div class="<%= user_signed_in? ? '' : 'center' %>">
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    </div>
+
+    <main>
+      <%= yield %>
+    </main>
+  </div>
+
+  <%= yield :javascript %>
+</body>
+</html>

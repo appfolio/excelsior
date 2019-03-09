@@ -1,0 +1,30 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #f3f3f3;
+  color: #333;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  font-kerning: normal;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+strong {
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}

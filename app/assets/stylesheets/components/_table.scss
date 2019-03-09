@@ -1,0 +1,39 @@
+.table {
+  border: 1px solid rgba(0,0,0,0.1);
+  width: 100%;
+
+  th {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  td, th {
+    padding: 1em;
+  }
+
+  .date
+  {
+    width: 15%;
+  }
+
+  &.table--clickable-row .js-clickable:hover {
+    background-color: rgba(172, 223, 219, .25);
+  }
+
+  tbody tr:nth-child(odd) {
+    background: rgba(0,0,0,0.1);
+  }
+
+  &.table--double-row {
+    tbody tr:nth-child(odd) {
+      background: none;
+    }
+
+    tbody tr:nth-child(4n+1), tbody tr:nth-child(4n+2) {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}

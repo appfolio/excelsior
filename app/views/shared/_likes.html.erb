@@ -1,0 +1,8 @@
+<%= image_tag 'thumbs_up_50px.png', :style => "height: 1.5em", :class => 'js-like',
+              :data => { :'message_id' => message.id, :'user-id' => current_user.id } %>
+
+&nbsp;
+
+<span id=<%= "#{message.id}_like_count" %>>
+  <%= message.likes.count %>
+</span>

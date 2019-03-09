@@ -1,0 +1,28 @@
+.quote {
+  position: relative;
+  display: inline-block;
+  line-height: 1.5;
+  padding: 0 40px;
+  text-align: left;
+
+  &:before, &:after {
+    color: rgba(0,0,0,0.8);
+    font-family: 'Playfair Display', serif;
+    font-size: 70px;
+    position: absolute;
+  }
+
+  &:before {
+    content: '\201C';
+    top: 0;
+    left: 0;
+    line-height: 45px;
+  }
+
+  &:after {
+    content: '\201D';
+    bottom: 0;
+    right: 0;
+    line-height: 0;
+  }
+}

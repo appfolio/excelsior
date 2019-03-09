@@ -1,0 +1,9 @@
+<section class="card">
+  <h1 class="feedback">New feedback</h1>
+
+  <%= render 'form' %>
+  <br>
+  <%= link_to 'Back to appreciations', appreciations_path %>
+  <br />
+  <%= link_to 'Copy this link to request feedback', new_feedback_path(recipient_id: current_user.id) %>
+</section>

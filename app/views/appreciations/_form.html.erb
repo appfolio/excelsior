@@ -1,0 +1,33 @@
+<%= render 'shared/recipient_autocomplete', :prefix => 'appreciation' %>
+<%= form_for(@appreciation) do |f| %>
+  <%= render :partial => '/shared/error_messages', :locals => { :message => @appreciation } %>
+
+  <div class="field">
+    <%= f.label :appreciation, "I appreciate" %>
+    <%= f.hidden_field :recipient_id%>
+    <%= text_field_tag :'recipient_id-autocomplete', '', :id => 'appreciation_recipient_id-autocomplete',
+                       :autofocus => true, :value => @recipient_name %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.label :team, "(on team/project" %>
+    <%= f.text_field :team %>
+    <strong>)</strong>
+
+  </div>
+
+  <div class="field">
+    <%= f.text_area :message, :placeholder => "Thanks for doing something awesome, because awesome things are super.",
+                    :class => 'message' %>
+  </div>
+
+  <%= render :partial => 'shared/anonymous_checkbox', :locals => { :f => f, :checked => false } %>
+
+  <a href="<%= new_user_url %>" tabindex="-1">Add someone new</a>
+  <br />
+  <br />
+
+  <div class="actions">
+    <%= f.submit "Give Appreciation", :class => 'button button--primary' %>
+  </div>
+
+<% end %>
+

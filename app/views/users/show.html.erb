@@ -1,0 +1,44 @@
+<section class="card">
+  <p>
+  <strong>Jump To:</strong>
+  <a href="#appreciations_received">Appreciations Received</a>&nbsp;
+  <a href="#appreciations_sent">Appreciations Sent</a>&nbsp;
+  <a href="#feedback_received">Feedback Received</a>&nbsp;
+  <a href="#feedback_sent">Feedback Sent</a>
+  </p>
+
+  <p>
+    <%= link_to 'Copy this link to request feedback', new_feedback_path(recipient_id: @user.id) %>
+  <br />
+    <%= link_to('Copy this link to request an appreciation', new_appreciation_path(recipient_id: @user.id)) %>
+  </p>
+
+  <p>
+    <br />
+    <h1>Messages for <%= @user.name %><%= @user.hidden? ? ' (user is hidden)' : '' %></h1>
+  </p>
+
+  <p>
+    <a name="appreciations_received"></a>
+    <strong>Appreciations Received</strong>
+    <%= render :partial => '/shared/appreciations_index', locals: { messages: @appreciations_received }%>
+  </p>
+
+  <p>
+    <a name="appreciations_sent"></a>
+    <strong>Appreciations Sent</strong>
+    <%= render :partial => '/shared/appreciations_index', locals: { messages: @appreciations_sent }%>
+  </p>
+
+  <p>
+    <a name="feedback_received"></a>
+    <strong>Feedback Received</strong>
+    <%= render :partial => '/shared/feedbacks_index', locals: { messages: @feedback_received }%>
+  </p>
+
+  <p>
+    <a name="feedback_sent"></a>
+    <strong>Feedback Sent</strong>
+    <%= render :partial => '/shared/feedbacks_index', locals: { messages: @feedback_sent }%>
+  </p>
+</section>

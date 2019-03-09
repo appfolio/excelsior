@@ -1,0 +1,19 @@
+<%= form_for message.comments.new, :remote => true do |f| %>
+  <%= f.hidden_field :root_id %>
+
+  <div class="field">
+    <%= f.label :add_a_reply %><br />
+    <%= f.text_area :message, :placeholder => "Put a reply here!", :class => 'message' %>
+  </div>
+
+  <% if current_user != message.recipient && message.anonymous? %>
+    <%= render :partial => 'shared/anonymous_checkbox', :locals => { :f => f, :checked => default_anonymous?(message) } %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Reply", class: 'button button--primary' %>
+  </div>
+
+<% end %>
+
+<br />

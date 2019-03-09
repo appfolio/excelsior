@@ -1,0 +1,27 @@
+<li class="tileset__item">
+  <div class="card card--centered card--clickable js-card-clickable" data-link="<%= appreciation_path(appreciation_card) %>">
+
+    <%= link_to 'Hide', appreciation_card, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card__hide' if current_user.admin? %></p>
+
+    <p class="card__recipient">
+      <%= appreciation_card.recipient.short_name %>
+    </p>
+
+    <p>
+      <q class="quote"><%= appreciation_card.message %></q>
+    </p>
+
+    <p class="card__author">
+      <% if ENV['DEPLOYMENT'].blank? || ENV['DEPLOYMENT'] == 'stage' %>
+        <div style="float:left">
+          <%= render :partial => 'shared/likes', :locals => { :message => appreciation_card } %>
+        </div>
+      <% end %>
+
+      <div style="float:right">
+        <%= appreciation_card.anonymous? ? 'Anonymous' : appreciation_card.submitter.short_name %>
+      </div>
+    </p>
+
+  </div>
+</li>

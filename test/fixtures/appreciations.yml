@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: appreciations
+#
+#  id           :integer          not null, primary key
+#  appreciation :text
+#  team         :string
+#  created_at   :datetime
+#  updated_at   :datetime
+#  recipient_id :integer          not null
+#  submitter_id :integer          not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

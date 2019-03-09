@@ -1,0 +1,27 @@
+.button {
+  background: #aaa;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0 -2px rgba(0,0,0,.15) inset;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  min-width: 200px;
+  outline: 0;
+  padding: 1em 2em;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+
+  &.button--primary {
+    background: #91c945;
+  }
+
+  &.button--small {
+    font-size: 13px;
+  }
+}

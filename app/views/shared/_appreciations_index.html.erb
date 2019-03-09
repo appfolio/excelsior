@@ -1,0 +1,33 @@
+<table class="table table--clickable-row">
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Team</th>
+      <th>Time</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% messages.each do |message| %>
+    <tr class='js-clickable' data-link="<%= appreciation_path(message) %>">
+      <td>
+        <p>
+          <strong><%= message.anonymous? ? "Someone anonymous" : message.submitter.name %></strong> appreciates
+          <strong><%= message.recipient.name %></strong>
+        </p>
+        <p>
+          &ldquo;<%= message.message %>&rdquo;
+        </p>
+      </td>
+
+      <td><%= link_to message.team, appreciations_path(:filters => {:team => message.team}) if message.team %></td>
+      <td class="date"><%= message.created_at.strftime "%m/%d/%Y %I:%M%p" %></td>
+      <td>
+        <%= link_to 'Hide', message, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br />

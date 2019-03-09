@@ -1,0 +1,7 @@
+<p>********</p>
+
+<%= render :partial => '/shared/pay_it_forward' %>
+
+<p>Join the Slack channel: <a href='<%= ENV['SLACK_CHANNEL_URL'] %>'><%= ENV['SLACK_CHANNEL'] %></a></p>
+
+<%= ENV['EMAIL_FOOTER_SIGNOFF']&.html_safe %>

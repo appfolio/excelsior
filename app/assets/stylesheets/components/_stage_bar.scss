@@ -1,0 +1,14 @@
+.stage-bar {
+  background-color: red;
+
+  font-weight: bold;
+  padding: 15px;
+
+  @media screen and (max-width: 975px) {
+    font-size: 26px;
+  }
+
+  @media screen and (min-width: 975px) {
+    font-size: 96px;
+  }
+}

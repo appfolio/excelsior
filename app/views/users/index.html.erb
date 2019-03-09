@@ -1,0 +1,35 @@
+<h1>Listing Users</h1>
+
+<table class="table table--clickable-row">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last Sign In</th>
+      <th>Sign In Count</th>
+      <% if current_user.admin? %>
+        <th>Messages Sent</th>
+        <th>Messages Received</th>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class='js-clickable' data-link="<%= user_path(user) %>">
+        <td><%= user.name %></td>
+        <td><%= user.current_sign_in_at.try(:to_date) %></td>
+        <td><%= user.sign_in_count %></td>
+        <% if current_user.admin? %>
+          <td><%= user.messages_sent.count %></td>
+          <td><%= user.messages_received.count %></td>
+          <td><%= link_to 'Hide', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

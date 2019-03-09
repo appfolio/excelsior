@@ -1,0 +1,17 @@
+.tileset {
+  margin: 0 -1rem;
+}
+
+.tileset__item {
+  float: left;
+  padding: 1em;
+  width: 100%;
+
+  @media screen and (min-width: 600px) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: 975px) {
+    width: 33.33333333%;
+  }
+}

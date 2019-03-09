@@ -1,0 +1,49 @@
+$card-padding: 2em;
+
+.card {
+  border: solid #fff;
+  transition: border-color .5s;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: $card-padding;
+  position: relative;
+
+  &.card--centered {
+    text-align: center;
+  }
+
+  &.card--clickable:hover {
+    border: solid #a3e3d8;
+  }
+
+}
+
+.card__recipient {
+  margin-bottom: 2rem;
+  text-align: left;
+  font-weight: 400;
+
+  &:after {
+    content: ","
+  }
+}
+
+.card__author {
+  color: gray;
+  font-size: 16px;
+  font-style: italic;
+  margin: 2rem 40px 0 0;
+  text-align: right;
+
+  &:before {
+    content: "- ";
+  }
+}
+
+.card__hide {
+  font-size: 16px;
+  position: absolute;
+  right: $card-padding/2;
+  top: $card-padding/2;
+}

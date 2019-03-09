@@ -1,0 +1,6 @@
+<% if message.received_at && (message.received_at != message.created_at) %>
+  <p>
+    Seen by <%= message.recipient.name %> at:
+    <%= message.received_at.to_s(:long) %>
+  </p>
+<% end %>

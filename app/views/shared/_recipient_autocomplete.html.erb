@@ -1,0 +1,35 @@
+<script type="text/javascript">
+  $(function() {
+    var lastSearch = [];
+    $('#<%= prefix %>_recipient_id-autocomplete').autocomplete({
+      minLength: 1,
+      delay: 0,
+      source: <%= recipient_list_json(@recipients) %>,
+      select: function(_, ui) {
+        $('#<%= prefix %>_recipient_id-autocomplete').val(ui.item.label);
+        $('#<%= prefix %>_recipient_id').val(ui.item.value);
+        return false;
+      },
+      focus: function(_, ui) {
+        $('#<%= prefix %>_recipient_id-autocomplete').val(ui.item.label);
+        return false;
+      },
+      change: function(event, ui) {
+        if(ui.item == null) {
+          if(lastSearch.length > 0) {
+            $('#<%= prefix %>_recipient_id-autocomplete').val(lastSearch[0].label);
+            $('#<%= prefix %>_recipient_id').val(lastSearch[0].value);
+
+          } else {
+            $('#<%= prefix %>_recipient_id-autocomplete').val('');
+            $('#<%= prefix %>_recipient_id').val('');
+            $('#<%= prefix %>_recipient_id-autocomplete').focus();
+          }
+        }
+      },
+      response: function(_, ui) {
+        lastSearch = ui.content;
+      }
+    });
+  });
+</script>

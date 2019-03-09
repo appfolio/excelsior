@@ -1,0 +1,67 @@
+.navbar-brand {
+  padding: 7px;
+  margin: 15px 0;
+  float: none;
+  border-radius: 4px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color:#4384af;
+}
+
+.header {
+  margin-bottom: 1em;
+}
+
+.navigation {
+  li {
+    display: inline-block;
+  }
+}
+
+.login {
+  margin: 1rem 0;
+  text-align: right;
+}
+
+.lite-button {
+  border: 1px solid rgba(0,0,0,0.2);
+  color: inherit;
+  display: inline-block;
+  font-size: 13px;
+  padding: 1em 2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.fieldset {
+  width: 30%;
+  margin-bottom: 30px;
+
+  input {
+    float:right;
+  }
+}
+
+.field {
+  margin-bottom: 1em;
+}
+
+.field_with_errors {
+  display: inline;
+}
+
+input, select, textarea {
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em;
+}
+
+#error_explanation {
+  padding: 1em;
+  border: 3px solid crimson;
+  border-radius: 2px;
+  margin-bottom: 2em;
+}

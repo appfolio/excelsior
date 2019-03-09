@@ -1,0 +1,23 @@
+<section class="card">
+  <p>
+    <strong><%= @appreciation.anonymous? ? "Someone anonymous" : @appreciation.submitter.name %></strong> appreciates
+    <strong><%= @appreciation.recipient.name %></strong>
+    <%= @appreciation.team.present? ? "on team/project <strong>#{@appreciation.team}</strong>".html_safe : "" %>
+    for
+  </p>
+  <p>
+    <strong>&ldquo;<%= @appreciation.message %>&rdquo;</strong>
+  </p>
+
+  <p>Very Nice!</p>
+
+
+  <br />
+  <%= render :partial => '/shared/pay_it_forward' %>
+
+  <%= render :partial => '/shared/received_at', :locals => { :message => @appreciation } %>
+
+  <%#= link_to 'Edit', edit_appreciation_path(@appreciation) %>
+  <%= link_to 'Home', appreciations_path %>
+
+</section>
