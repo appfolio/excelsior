@@ -37,6 +37,7 @@ end
 group :test do
   gem 'mocha'
   gem 'webmock'
+  gem 'simplecov'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
