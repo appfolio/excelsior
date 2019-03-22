@@ -36,10 +36,4 @@ FactoryBot.define do
     association :submitter
     association :root
   end
-
-  factory :like do
-    association :message
-    association :user
-  end
-
 end

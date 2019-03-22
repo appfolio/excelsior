@@ -25,8 +25,6 @@ class Message < ActiveRecord::Base
   belongs_to :submitter, :class_name => User
   has_many :comments, :foreign_key => :root_id
 
-  has_many :likes
-
   validates_presence_of :message, :recipient, :submitter
 
   scope :index, -> { not_hidden.order('created_at DESC') }
