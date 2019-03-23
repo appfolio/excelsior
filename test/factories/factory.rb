@@ -9,29 +9,29 @@ FactoryBot.define do
 
   factory :user, :aliases => [:submitter, :recipient] do
     first_name
-    last_name  "Doe"
+    last_name {'Doe'}
     email
-    password 'f4k3p455w0rd'
+    password {'f4k3p455w0rd'}
 
     factory :admin do
-      admin true
+      admin {true}
     end
   end
 
   factory :appreciation, aliases: [:message] do
-    message 'I appreciate when a rails upgrade works smoothly'
+    message {'I appreciate when a rails upgrade works smoothly'}
     association :recipient
     association :submitter
   end
 
   factory :feedback, :aliases => [:root] do
-    message 'You could take a little more pride in your code. Seriously, copy and pasting everything between Appreciations and Feedbacks?'
+    message {'You could take a little more pride in your code. Seriously, copy and pasting everything between Appreciations and Feedbacks?'}
     association :recipient
     association :submitter
   end
 
   factory :comment do
-    message 'I do not think that feedback was very clear'
+    message {'I do not think that feedback was very clear'}
     association :recipient
     association :submitter
     association :root
