@@ -12,12 +12,6 @@
     </p>
 
     <p class="card__author">
-      <% if ENV['DEPLOYMENT'].blank? || ENV['DEPLOYMENT'] == 'stage' %>
-        <div style="float:left">
-          <%= render :partial => 'shared/likes', :locals => { :message => appreciation_card } %>
-        </div>
-      <% end %>
-
       <div style="float:right">
         <%= appreciation_card.anonymous? ? 'Anonymous' : appreciation_card.submitter.short_name %>
       </div>

@@ -2,7 +2,6 @@ Appreciations::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   resources :appreciations
-  resources :likes, :only => [:create, :destroy]
   resources :feedbacks
   resources :users
   resources :faqs, only: [:index]
