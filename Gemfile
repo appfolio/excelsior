@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.4.5'
-gem 'rails', '4.2.8'
+gem 'rails', '~> 4.2.11.1'
 
 gem 'pg', '~> 0'
 gem 'devise', '3.5.2'
