@@ -9,7 +9,7 @@ class SlackSenderTest < ActiveSupport::TestCase
   end
 
   def test_slack_sender__stage
-    appreciation = FactoryGirl.create(:appreciation)
+    appreciation = FactoryBot.create(:appreciation)
 
     body = { "username" => "Excelsior!",
              "text" => "*#{appreciation.submitter.name}* appreciates *#{appreciation.recipient.name}*:\nI appreciate when a rails upgrade works smoothly\n*BOOM.*\n",
@@ -28,7 +28,7 @@ class SlackSenderTest < ActiveSupport::TestCase
 
   def test_slack_sender__production
     ENV.stubs(:[]).with("SLACK_CHANNEL").returns("#excelsior")
-    appreciation = FactoryGirl.create(:appreciation)
+    appreciation = FactoryBot.create(:appreciation)
 
     body = { "username" => "Excelsior!",
              "text" => "*#{appreciation.submitter.name}* appreciates *#{appreciation.recipient.name}*:\nI appreciate when a rails upgrade works smoothly\n*BOOM.*\n",
@@ -45,7 +45,7 @@ class SlackSenderTest < ActiveSupport::TestCase
   end
 
   def test_slack_sender__refuse_feedback
-    feedback = FactoryGirl.create(:feedback)
+    feedback = FactoryBot.create(:feedback)
     HTTParty.expects(:post).never
 
     response = ::SlackSender.new(feedback).send_slack_message

@@ -7,9 +7,9 @@ class EmailerTest < ActionMailer::TestCase
   end
 
   def test_appreciation_email
-    admin = FactoryGirl.create(:user, admin: true)
-    recipient = FactoryGirl.create(:recipient, email: 'hey@alloweddomain.com')
-    appreciation = FactoryGirl.create(:appreciation, :recipient => recipient)
+    admin = FactoryBot.create(:user, admin: true)
+    recipient = FactoryBot.create(:recipient, email: 'hey@alloweddomain.com')
+    appreciation = FactoryBot.create(:appreciation, :recipient => recipient)
     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
       Emailer.appreciation_email(appreciation).deliver_now
     end
@@ -22,9 +22,9 @@ class EmailerTest < ActionMailer::TestCase
   end
 
   def test_feedback_email
-    admin = FactoryGirl.create(:user, admin: true)
-    recipient = FactoryGirl.create(:recipient, email: 'hey@alloweddomain.com')
-    feedback = FactoryGirl.create(:feedback, :recipient => recipient)
+    admin = FactoryBot.create(:user, admin: true)
+    recipient = FactoryBot.create(:recipient, email: 'hey@alloweddomain.com')
+    feedback = FactoryBot.create(:feedback, :recipient => recipient)
     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
       Emailer.feedback_email(feedback).deliver_now
     end
@@ -37,11 +37,11 @@ class EmailerTest < ActionMailer::TestCase
   end
 
   def test_comment_email
-    admin = FactoryGirl.create(:user, admin: true)
-    recipient = FactoryGirl.create(:user, email: 'hey@alloweddomain.com')
-    submitter = FactoryGirl.create(:user)
-    feedback = FactoryGirl.create(:feedback, :recipient => recipient, :submitter => submitter)
-    comment = FactoryGirl.create(:comment, :recipient => recipient, :submitter => submitter, :anonymous => true, :root => feedback)
+    admin = FactoryBot.create(:user, admin: true)
+    recipient = FactoryBot.create(:user, email: 'hey@alloweddomain.com')
+    submitter = FactoryBot.create(:user)
+    feedback = FactoryBot.create(:feedback, :recipient => recipient, :submitter => submitter)
+    comment = FactoryBot.create(:comment, :recipient => recipient, :submitter => submitter, :anonymous => true, :root => feedback)
     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
       Emailer.comment_email(comment).deliver_now
     end

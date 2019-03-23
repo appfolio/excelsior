@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
 
   setup do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
   end
 
   test "should show user" do
@@ -16,7 +16,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "show user should only show feedback sent if the user is current_user" do
-    feedback_to_show = FactoryGirl.create(:feedback, :submitter => @user)
+    feedback_to_show = FactoryBot.create(:feedback, :submitter => @user)
     sign_in @user
     assert_equal @controller.current_user, @user
 
@@ -27,8 +27,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "show user should show feedback sent if the user is an admin" do
-    feedback_to_show = FactoryGirl.create(:feedback, :submitter => @user)
-    admin = FactoryGirl.create(:user, :admin => true)
+    feedback_to_show = FactoryBot.create(:feedback, :submitter => @user)
+    admin = FactoryBot.create(:user, :admin => true)
     sign_in admin
 
     get :show, id: @user
@@ -38,8 +38,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "show user should not show feedback sent if the user is not current_user unless it is to the current_user" do
-    feedback_to_show = FactoryGirl.create(:feedback, :submitter => @user, :recipient => @controller.current_user)
-    feedback_to_hide = FactoryGirl.create(:feedback, :submitter => @user)
+    feedback_to_show = FactoryBot.create(:feedback, :submitter => @user, :recipient => @controller.current_user)
+    feedback_to_hide = FactoryBot.create(:feedback, :submitter => @user)
 
     get :show, id: @user
     assert_response :success
@@ -48,7 +48,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "show user should show feedback received if the user is current_user" do
-    feedback_to_show = FactoryGirl.create(:feedback, :recipient => @user)
+    feedback_to_show = FactoryBot.create(:feedback, :recipient => @user)
     sign_in @user
     assert_equal @controller.current_user, @user
 
@@ -59,8 +59,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "show user should show feedback received if the user is an admin" do
-    feedback_to_show = FactoryGirl.create(:feedback, :recipient => @user)
-    admin = FactoryGirl.create(:user, :admin => true)
+    feedback_to_show = FactoryBot.create(:feedback, :recipient => @user)
+    admin = FactoryBot.create(:user, :admin => true)
     sign_in admin
 
     get :show, id: @user
@@ -70,8 +70,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "show user should not show feedback received if the user is not current_user unless it is from the current_user" do
-    feedback_to_show = FactoryGirl.create(:feedback, :recipient => @user, :submitter => @controller.current_user)
-    feedback_to_hide = FactoryGirl.create(:feedback, :recipient => @user)
+    feedback_to_show = FactoryBot.create(:feedback, :recipient => @user, :submitter => @controller.current_user)
+    feedback_to_hide = FactoryBot.create(:feedback, :recipient => @user)
 
     get :show, id: @user
     assert_response :success

@@ -26,8 +26,8 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   test "user index" do
-    user1 = FactoryGirl.create(:user, :email => 'my_email@alloweddomain.com')
-    user2 = FactoryGirl.create(:user, :email => 'my_email2@alloweddomain.com', :hidden_at => Time.now)
+    user1 = FactoryBot.create(:user, :email => 'my_email@alloweddomain.com')
+    user2 = FactoryBot.create(:user, :email => 'my_email2@alloweddomain.com', :hidden_at => Time.now)
 
     assert_equal [user1], User.index
     assert_equal [user1, user2], User.all.order(:id)
@@ -48,14 +48,14 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "find_for_google_oauth finds a user" do
-    user = FactoryGirl.create(:user, :email => 'my_email@alloweddomain.com')
+    user = FactoryBot.create(:user, :email => 'my_email@alloweddomain.com')
     access_token = stub(:info => {'email' => 'my_email@alloweddomain.com'})
 
     assert_equal user, User.find_for_google_oauth2(access_token, :not_used)
   end
 
   test "find_for_google_oauth raises on a hidden user" do
-    user = FactoryGirl.create(:user, :email => 'my_email@alloweddomain.com', :hidden_at => Time.now)
+    user = FactoryBot.create(:user, :email => 'my_email@alloweddomain.com', :hidden_at => Time.now)
     access_token = stub(:info => {'email' => 'my_email@alloweddomain.com'})
 
     assert_raises(StandardError) do
@@ -64,7 +64,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "find_for_google_oauth finds a user even with different cases returned by oath" do
-    user = FactoryGirl.create(:user, :email => 'my_email@alloweddomain.com')
+    user = FactoryBot.create(:user, :email => 'my_email@alloweddomain.com')
     access_token = stub(:info => {'email' => 'My_Email@alloweddomain.com'})
 
     assert_equal user, User.find_for_google_oauth2(access_token, :not_used)
@@ -110,14 +110,14 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "appreciations_received appreciations_sent feedback_received feedback_sent" do
-    user = FactoryGirl.create(:user)
-    appreciation_received = FactoryGirl.create(:appreciation, :recipient => user)
-    appreciation_sent = FactoryGirl.create(:appreciation, :submitter => user)
-    rando_appreciation = FactoryGirl.create(:appreciation)
+    user = FactoryBot.create(:user)
+    appreciation_received = FactoryBot.create(:appreciation, :recipient => user)
+    appreciation_sent = FactoryBot.create(:appreciation, :submitter => user)
+    rando_appreciation = FactoryBot.create(:appreciation)
 
-    feedback_received = FactoryGirl.create(:feedback, :recipient => user)
-    feedback_sent = FactoryGirl.create(:feedback, :submitter => user)
-    rando_feedback = FactoryGirl.create(:feedback)
+    feedback_received = FactoryBot.create(:feedback, :recipient => user)
+    feedback_sent = FactoryBot.create(:feedback, :submitter => user)
+    rando_feedback = FactoryBot.create(:feedback)
 
     assert_equal [appreciation_received], user.appreciations_received
     assert_equal [appreciation_sent], user.appreciations_sent

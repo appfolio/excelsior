@@ -4,7 +4,7 @@ class FeedbacksControllerTest < ActionController::TestCase
   setup do
     now = Time.now
     Time.stubs(:now).returns(now)
-    @feedback = FactoryGirl.create(:feedback)
+    @feedback = FactoryBot.create(:feedback)
   end
 
   test "should get new" do
@@ -13,7 +13,7 @@ class FeedbacksControllerTest < ActionController::TestCase
   end
 
   test "new should initialize instance variables correctly" do
-    recipient = FactoryGirl.create(:recipient)
+    recipient = FactoryBot.create(:recipient)
     get :new, recipient_id: recipient.id
     assert_equal recipient, assigns(:feedback).recipient
     assert_equal recipient.name, assigns(:recipient_name)
@@ -21,7 +21,7 @@ class FeedbacksControllerTest < ActionController::TestCase
   end
 
   test "should create feedback" do
-    recipient = FactoryGirl.create(:recipient)
+    recipient = FactoryBot.create(:recipient)
     ::EmailSender.any_instance.expects(:send_email_and_set_flash).returns("This is the result.")
     assert_difference('Feedback.count') do
       post :create, feedback: { message: @feedback.message,
@@ -79,7 +79,7 @@ class FeedbacksControllerTest < ActionController::TestCase
   end
 
   test "should show to admins but not update the timestamp" do
-    user = FactoryGirl.create(:user, admin: true)
+    user = FactoryBot.create(:user, admin: true)
     sign_in(user)
     get :show, :id => @feedback.id
     assert_response :success

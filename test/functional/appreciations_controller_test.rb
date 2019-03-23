@@ -4,7 +4,7 @@ class AppreciationsControllerTest < ActionController::TestCase
   setup do
     now = Time.now
     Time.stubs(:now).returns(now)
-    @appreciation = FactoryGirl.create(:appreciation)
+    @appreciation = FactoryBot.create(:appreciation)
   end
 
   test "should get index" do
@@ -14,8 +14,8 @@ class AppreciationsControllerTest < ActionController::TestCase
   end
 
   test "should get index scoped by submitter" do
-    appreciations = [FactoryGirl.create(:appreciation), FactoryGirl.create(:appreciation)]
-    appreciations << FactoryGirl.create(:appreciation, :team => "heyo")
+    appreciations = [FactoryBot.create(:appreciation), FactoryBot.create(:appreciation)]
+    appreciations << FactoryBot.create(:appreciation, :team => "heyo")
 
     get :index, :filters => {:submitter_id => appreciations[0].submitter_id}
     assert_response :success
@@ -24,8 +24,8 @@ class AppreciationsControllerTest < ActionController::TestCase
   end
 
   test "should get index scoped by recipient" do
-    appreciations = [FactoryGirl.create(:appreciation), FactoryGirl.create(:appreciation)]
-    appreciations << FactoryGirl.create(:appreciation, :team => "heyo")
+    appreciations = [FactoryBot.create(:appreciation), FactoryBot.create(:appreciation)]
+    appreciations << FactoryBot.create(:appreciation, :team => "heyo")
 
     get :index, :filters => {:recipient_id => appreciations[1].recipient_id}
     assert_response :success
@@ -34,8 +34,8 @@ class AppreciationsControllerTest < ActionController::TestCase
   end
 
   test "should get index scoped by team" do
-    appreciations = [FactoryGirl.create(:appreciation), FactoryGirl.create(:appreciation)]
-    appreciations << FactoryGirl.create(:appreciation, :team => "heyo")
+    appreciations = [FactoryBot.create(:appreciation), FactoryBot.create(:appreciation)]
+    appreciations << FactoryBot.create(:appreciation, :team => "heyo")
 
     get :index, :filters => {:team => appreciations[2].team}
     assert_response :success
@@ -49,7 +49,7 @@ class AppreciationsControllerTest < ActionController::TestCase
   end
 
   test "new should initialize instance variables correctly" do
-    recipient = FactoryGirl.create(:recipient)
+    recipient = FactoryBot.create(:recipient)
     get :new, recipient_id: recipient.id
     assert_equal recipient, assigns(:appreciation).recipient
     assert_equal recipient.name, assigns(:recipient_name)
@@ -58,7 +58,7 @@ class AppreciationsControllerTest < ActionController::TestCase
   end
 
   test "should create appreciation" do
-    recipient = FactoryGirl.create(:recipient)
+    recipient = FactoryBot.create(:recipient)
     ::EmailSender.any_instance.expects(:send_email_and_set_flash).returns("This is the result.")
     ::SlackSender.any_instance.expects(:send_slack_message)
     assert_difference('Appreciation.count') do
