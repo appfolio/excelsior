@@ -22,7 +22,7 @@ require 'test_helper'
 class FeedbackTest < ActiveSupport::TestCase
 
   test "feedback is private" do
-    feedback = FactoryGirl.build(:feedback)
+    feedback = FactoryBot.build(:feedback)
     assert_equal false, feedback.private?
 
     feedback.save!

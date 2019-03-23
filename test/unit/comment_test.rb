@@ -22,14 +22,14 @@ require 'test_helper'
 class CommentTest < ActiveSupport::TestCase
 
   test "valid" do
-    feedback = FactoryGirl.create(:feedback)
+    feedback = FactoryBot.create(:feedback)
     comment = Comment.new(:submitter => feedback.recipient, :recipient => feedback.submitter,
                           :message => "This is a good comment", :root => feedback)
     assert comment.valid?, comment.errors.full_messages
   end
 
   test "root can't be blank" do
-    feedback = FactoryGirl.create(:feedback)
+    feedback = FactoryBot.create(:feedback)
     comment = Comment.new(:submitter => feedback.recipient, :recipient => feedback.submitter,
                           :message => "This is a good comment", :root => nil)
     assert !comment.valid?
@@ -37,29 +37,29 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test "submitter can't be an admin" do
-    comment = Comment.new(:submitter => FactoryGirl.create(:admin), :recipient => FactoryGirl.create(:user),
-                          :message => "This is not allowed", :root => FactoryGirl.create(:feedback))
+    comment = Comment.new(:submitter => FactoryBot.create(:admin), :recipient => FactoryBot.create(:user),
+                          :message => "This is not allowed", :root => FactoryBot.create(:feedback))
     assert !comment.valid?
     assert_equal ["Admin can't submit comments on feedback"], comment.errors.full_messages
   end
 
   test "submitter can't be an admin unless they are the original recipient" do
-    feedback = FactoryGirl.create(:feedback, :recipient => FactoryGirl.create(:admin))
+    feedback = FactoryBot.create(:feedback, :recipient => FactoryBot.create(:admin))
     comment = Comment.new(:submitter => feedback.recipient, :recipient => feedback.submitter,
                           :message => "This is allowed", :root => feedback)
     assert comment.valid?, comment.errors.full_messages
   end
 
   test "submitter can't be an admin unless they are the original submitter" do
-    feedback = FactoryGirl.create(:feedback, :submitter => FactoryGirl.create(:admin))
+    feedback = FactoryBot.create(:feedback, :submitter => FactoryBot.create(:admin))
     comment = Comment.new(:submitter => feedback.submitter, :recipient => feedback.recipient,
                           :message => "This is allowed", :root => feedback)
     assert comment.valid?, comment.errors.full_messages
   end
 
   test "comments are only valid on feedback" do
-    comment = Comment.new(:submitter => FactoryGirl.create(:user), :recipient => FactoryGirl.create(:user),
-                          :message => "This is not allowed", :root => FactoryGirl.create(:appreciation))
+    comment = Comment.new(:submitter => FactoryBot.create(:user), :recipient => FactoryBot.create(:user),
+                          :message => "This is not allowed", :root => FactoryBot.create(:appreciation))
     assert !comment.valid?
     assert_equal ["Comments can only be attached to feedback"], comment.errors.full_messages
   end

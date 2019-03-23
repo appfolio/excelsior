@@ -7,7 +7,7 @@ class OmniauthCallbacksControllerTest < ActionController::TestCase
   end
 
   test "google_oauth2 succeeds" do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
 
     User.expects(:find_for_google_oauth2).with(request.env["omniauth.auth"], nil).returns(user)
 

@@ -3,11 +3,11 @@ require 'test_helper'
 class LikesControllerTest < ActionController::TestCase
 
   def test_create
-    appreciation = FactoryGirl.create(:appreciation)
+    appreciation = FactoryBot.create(:appreciation)
     5.times do
-      FactoryGirl.create(:like, :message => appreciation)
+      FactoryBot.create(:like, :message => appreciation)
     end
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
 
     assert_difference 'Like.count' do
       xhr :post, :create, :message_id => appreciation, :user_id => user

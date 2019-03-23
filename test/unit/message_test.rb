@@ -29,14 +29,14 @@ class MessageTest < ActiveSupport::TestCase
   end
 
   test "team is downcased" do
-    appreciation = FactoryGirl.create(:appreciation)
+    appreciation = FactoryBot.create(:appreciation)
     appreciation.team = "TEAM"
     appreciation.save!
     assert_equal "team", appreciation.team
   end
 
   test "index scope" do
-    appreciation = FactoryGirl.create(:appreciation)
+    appreciation = FactoryBot.create(:appreciation)
     assert_equal [appreciation], Appreciation.all
     assert_equal [appreciation], Appreciation.index
 

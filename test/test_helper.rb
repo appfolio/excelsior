@@ -4,7 +4,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'mocha/setup'
-require 'factory_girl'
+require 'factory_bot'
 require 'webmock/minitest'
 
 class ActiveSupport::TestCase
@@ -14,7 +14,7 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  include FactoryGirl::Syntax::Methods
+  include FactoryBot::Syntax::Methods
 end
 
 class ActionMailer::TestCase
@@ -29,7 +29,7 @@ class ActionController::TestCase
   setup :login
 
   def login
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     sign_in(user)
   end
 
