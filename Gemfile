@@ -1,43 +1,43 @@
 source 'https://rubygems.org'
 
 ruby '2.4.5'
-gem 'rails', '4.2.8'
+gem 'rails', '~> 4.2.11.1'
 
 gem 'pg', '~> 0'
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
+gem 'devise', '3.5.2'
+gem 'omniauth', '1.2.2'
+gem 'omniauth-google-oauth2', '0.2.6'
 
-gem 'rails_12factor', group: :production
+gem 'rails_12factor', '0.0.3', group: :production
 gem 'puma', '~> 3'
-gem 'jquery-rails'
+gem 'jquery-rails', '4.0.5'
 
 gem 'bootstrap-sass', '~> 3.3.4'
-gem 'sass-rails', '>= 3.2'
-gem 'coffee-rails'
+gem 'sass-rails', '5.0.4'
+gem 'coffee-rails', '4.1.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
 
-gem 'uglifier', '>= 1.0.3'
-gem 'hideable'
-gem 'httparty'
+gem 'uglifier', '2.7.2'
+gem 'hideable', '0.3.1'
+gem 'httparty', '0.13.7'
 gem 'will_paginate', '~> 3.0.6'
 
 group :development do
-  gem 'annotate'
+  gem 'annotate', '~> 2'
 end
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 5'
-  gem 'pry'
-  gem 'pry-remote'
+  gem 'pry', '~> 0'
+  gem 'pry-remote', '~> 0'
 end
 
 group :test do
-  gem 'mocha'
-  gem 'webmock'
-  gem 'simplecov'
+  gem 'mocha', '~> 1'
+  gem 'webmock', '~> 1'
+  gem 'simplecov', '~> 0'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
