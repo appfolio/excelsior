@@ -7,7 +7,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should show user" do
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
     assert assigns(:appreciations_received)
     assert assigns(:appreciations_sent)
@@ -20,7 +20,7 @@ class UsersControllerTest < ActionController::TestCase
     sign_in @user
     assert_equal @controller.current_user, @user
 
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
 
     assert_equal [feedback_to_show], assigns(:feedback_sent)
@@ -31,7 +31,7 @@ class UsersControllerTest < ActionController::TestCase
     admin = FactoryBot.create(:user, :admin => true)
     sign_in admin
 
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
 
     assert_equal [feedback_to_show], assigns(:feedback_sent)
@@ -41,7 +41,7 @@ class UsersControllerTest < ActionController::TestCase
     feedback_to_show = FactoryBot.create(:feedback, :submitter => @user, :recipient => @controller.current_user)
     feedback_to_hide = FactoryBot.create(:feedback, :submitter => @user)
 
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
 
     assert_equal [feedback_to_show], assigns(:feedback_sent)
@@ -52,7 +52,7 @@ class UsersControllerTest < ActionController::TestCase
     sign_in @user
     assert_equal @controller.current_user, @user
 
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
 
     assert_equal [feedback_to_show], assigns(:feedback_received)
@@ -63,7 +63,7 @@ class UsersControllerTest < ActionController::TestCase
     admin = FactoryBot.create(:user, :admin => true)
     sign_in admin
 
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
 
     assert_equal [feedback_to_show], assigns(:feedback_received)
@@ -73,7 +73,7 @@ class UsersControllerTest < ActionController::TestCase
     feedback_to_show = FactoryBot.create(:feedback, :recipient => @user, :submitter => @controller.current_user)
     feedback_to_hide = FactoryBot.create(:feedback, :recipient => @user)
 
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
 
     assert_equal [feedback_to_show], assigns(:feedback_received)
@@ -87,7 +87,9 @@ class UsersControllerTest < ActionController::TestCase
   test "should create user" do
     EmailDomainValidator.stubs(:allowed_email_domain?).returns(true)
     assert_difference('User.count') do
-      post :create, user: { :first_name => "Hi", :last_name => "There", :nickname => "Hello", :email => "whatever@alloweddomain.com" }
+      post :create, params: {
+        user: { :first_name => "Hi", :last_name => "There", :nickname => "Hello", :email => "whatever@alloweddomain.com" }
+      }
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -96,7 +98,9 @@ class UsersControllerTest < ActionController::TestCase
   test "should redirect on create if user is invalid" do
     EmailDomainValidator.stubs(:allowed_email_domain?).returns(false)
     assert_no_difference('User.count') do
-      post :create, user: { :first_name => "Hi", :last_name => "There", :nickname => "Hello", :email => "not@allowed.com" }
+      post :create, params: {
+        user: { :first_name => "Hi", :last_name => "There", :nickname => "Hello", :email => "not@allowed.com" }
+      }
     end
 
     assert_response :success
@@ -106,7 +110,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should hide user if current user is an admin" do
     @controller.current_user.update_attributes!(admin: true)
     assert_no_difference 'User.count' do
-      delete :destroy, id: @user
+      delete :destroy, params: { id: @user }
       assert @user.reload.hidden_at
     end
 
@@ -117,7 +121,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should not destroy user if current user is not an admin" do
     @controller.current_user.update_attributes!(admin: false)
     assert_no_difference 'User.count' do
-      delete :destroy, id: @user
+      delete :destroy, params: { id: @user }
       assert_nil @user.reload.hidden_at
     end
 

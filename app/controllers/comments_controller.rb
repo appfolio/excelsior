@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
         format.js
       end
     else
-      render :nothing => true
+      head :no_content
     end
   end
 
