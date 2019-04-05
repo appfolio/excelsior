@@ -15,7 +15,7 @@ jobs: # a collection of steps
       - image: circleci/postgres:9.4-alpine # database image
         environment: # environment variables for database
           POSTGRES_USER: circleci-ruby
-          POSTGRES_DB: appreciations_test
+          POSTGRES_DB: excelsior_test
           POSTGRES_PASSWORD: ""
           TZ: /usr/share/zoneinfo/America/Los_Angeles
     steps: # a collection of executable commands
