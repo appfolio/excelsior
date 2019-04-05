@@ -26,6 +26,7 @@ gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem 'annotate', '~> 2'
+  gem 'ten_years_rails'
 end
 
 group :development, :test do
