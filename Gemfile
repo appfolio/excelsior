@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.4.5'
-gem 'rails', '~> 4.2.11.1'
+gem 'rails', '~> 5.0.7'
 
 gem 'pg', '~> 0'
 gem 'devise', '4.6.2'
@@ -9,7 +9,7 @@ gem 'omniauth-google-oauth2', '0.2.6'
 
 gem 'rails_12factor', '0.0.3', group: :production
 gem 'puma', '~> 3'
-gem 'jquery-rails', '4.0.5'
+gem 'jquery-rails', '4.2.2'
 
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '5.0.7'
@@ -38,6 +38,7 @@ group :test do
   gem 'mocha', '~> 1'
   gem 'webmock', '~> 1'
   gem 'simplecov', '~> 0'
+  gem 'rails-controller-testing'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
