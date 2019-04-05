@@ -3,6 +3,7 @@ require 'test_helper'
 class EmailerTest < ActionMailer::TestCase
 
   setup do
+    EmailDomainValidator.stubs(:allowed_email_domains).returns(["alloweddomain.com"])
     Emailer.any_instance.stubs(:default_from_email).returns("admin@alloweddomain.com")
   end
 
