@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users
-  def index
-    order = params[:order] || ""
-    @users = User.index.order(order).order("first_name ASC").order("last_name ASC")
-  end
-
   def show
     @appreciations_received = @user.appreciations_received.index
     @appreciations_sent = @user.appreciations_sent.index
