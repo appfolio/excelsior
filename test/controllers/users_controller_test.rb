@@ -103,16 +103,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_template :new
   end
 
-  # test "should get edit" do
-  #   get :edit, id: @user
-  #   assert_response :success
-  # end
-  #
-  # test "should update user" do
-  #   patch :update, id: @user, user: {  }
-  #   assert_redirected_to user_path(assigns(:user))
-  # end
-
   test "should hide user if current user is an admin" do
     @controller.current_user.update_attributes!(admin: true)
     assert_no_difference 'User.count' do
