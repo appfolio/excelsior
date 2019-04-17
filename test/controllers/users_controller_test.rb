@@ -110,7 +110,7 @@ class UsersControllerTest < ActionController::TestCase
       assert @user.reload.hidden_at
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to root_path
     assert_equal "User was successfully hidden.", flash[:notice]
   end
 
@@ -121,7 +121,7 @@ class UsersControllerTest < ActionController::TestCase
       assert_nil @user.reload.hidden_at
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to root_path
     assert_equal "There was a problem hiding the user.", flash[:notice]
   end
 end

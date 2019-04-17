@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       @user.hide!
       notice = 'User was successfully hidden.'
     end
-    redirect_to users_url, notice: notice || 'There was a problem hiding the user.'
+    redirect_to root_url, notice: notice || 'There was a problem hiding the user.'
   end
 
   private
