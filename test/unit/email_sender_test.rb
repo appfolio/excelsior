@@ -23,7 +23,6 @@ class EmailSenderTest < ActiveSupport::TestCase
   end
 
   def test_sends_email__associated_domain
-    admin = FactoryBot.create(:user, admin: true)
     recipient = FactoryBot.create(:recipient, email: 'hey@alloweddomain.com')
     feedback = FactoryBot.create(:feedback, recipient: recipient)
 
@@ -32,14 +31,12 @@ class EmailSenderTest < ActiveSupport::TestCase
 
       email = ActionMailer::Base.deliveries.last
       assert_equal 'hey@alloweddomain.com', email.to[0]
-      assert_equal [admin.email], email.bcc
       assert_equal 'We sent the recipient email notification of this feedback.',
                    flash
     end
   end
 
   def test_sends_email__non_associated_account
-    admin = FactoryBot.create(:user, admin: true)
     recipient = FactoryBot.create(:recipient)
     recipient.email = "hey@not_alloweddomain.com"
     recipient.save(:validate => false)
@@ -55,7 +52,6 @@ class EmailSenderTest < ActiveSupport::TestCase
 
   def test_sends_email__non_allowed_email_recipient
     EmailDomainValidator.expects(:allowed_email_recipient?).returns(false)
-    admin = FactoryBot.create(:user, admin: true)
     recipient = FactoryBot.create(:recipient, email: 'hey@alloweddomain.com')
     appreciation = FactoryBot.create(:appreciation, recipient: recipient)
 
@@ -69,7 +65,6 @@ class EmailSenderTest < ActiveSupport::TestCase
 
   def test_sends_email__allowed_email_recipient
     EmailDomainValidator.expects(:allowed_email_recipient?).returns(true)
-    admin = FactoryBot.create(:user, admin: true)
     recipient = FactoryBot.create(:recipient, email: 'hi@alloweddomain.com')
     appreciation = FactoryBot.create(:appreciation, recipient: recipient)
 
@@ -78,7 +73,6 @@ class EmailSenderTest < ActiveSupport::TestCase
 
       email = ActionMailer::Base.deliveries.last
       assert_equal 'hi@alloweddomain.com', email.to[0]
-      assert_equal [admin.email], email.bcc
       assert_equal 'We sent the recipient email notification of this appreciation.',
                    flash
     end
