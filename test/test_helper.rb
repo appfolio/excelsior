@@ -28,6 +28,4 @@ class ActionController::TestCase
     user = FactoryBot.create(:user)
     sign_in(user)
   end
-
-  # EmailDomainValidator.stubs(:allowed_email_domains).returns(["alloweddomain.com"])
 end
