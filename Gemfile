@@ -38,6 +38,8 @@ group :test do
   gem 'mocha', '~> 1'
   gem 'webmock', '~> 1'
   gem 'simplecov', '~> 0'
+  gem 'simplecov-lcov'
+  gem 'simplecov-html' # if you'd like classic html coverage reports
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
