@@ -33,6 +33,10 @@ jobs: # a collection of steps
             - rails-excelsior-bundle-v2-{{ checksum "Gemfile.lock" }}
             - rails-excelsior-bundle-v2-
 
+      - run: # Install pronto/rugged/libgit2 dependencies
+          name: CMake Install
+          command: sudo apt-get install cmake
+
       - run: # Install Ruby dependencies
           name: Bundle Install
           command: bundle install
