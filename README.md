@@ -1,4 +1,4 @@
-# Excelsior!
+# Excelsior! [![CircleCI](https://circleci.com/gh/appfolio/excelsior/tree/master.svg?style=shield)](https://circleci.com/gh/appfolio/excelsior/tree/master)
 
 A real-time feedback app. Give (private, anonymous) feedback to your coworkers, or appreciate
 them publicly for going above and beyond.
