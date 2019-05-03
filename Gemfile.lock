@@ -212,6 +212,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    simplecov-lcov (0.7.0)
     slop (3.6.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -270,6 +271,8 @@ DEPENDENCIES
   rails_12factor (= 0.0.3)
   sass-rails (= 5.0.7)
   simplecov (~> 0)
+  simplecov-html
+  simplecov-lcov
   ten_years_rails
   uglifier (= 2.7.2)
   webmock (~> 1)
