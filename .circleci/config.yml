@@ -67,4 +67,9 @@ jobs: # a collection of steps
           name: Check coverage
           command: |
             gem install undercover
-            undercover --compare origin/master
+            gem install pronto
+            gem install pronto-undercover
+            # pull origin/master to have a ref to compare against
+            git remote set-branches --add origin master
+            git fetch
+            pronto run -f github_pr -c origin/master
