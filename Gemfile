@@ -41,6 +41,9 @@ group :test do
   gem 'rails-controller-testing'
   gem 'simplecov-lcov'
   gem 'simplecov-html' # if you'd like classic html coverage reports
+  gem 'undercover'
+  gem 'pronto'
+  gem 'pronto-undercover'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
