@@ -3,7 +3,7 @@ Appreciations::Application.routes.draw do
 
   resources :appreciations
   resources :feedbacks
-  resources :users
+  resources :users, only: [:show, :new, :create, :destroy]
   resources :faqs, only: [:index]
   resources :comments, only: [:create, :destroy]
 

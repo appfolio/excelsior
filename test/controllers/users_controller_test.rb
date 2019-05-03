@@ -79,12 +79,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal [feedback_to_show], assigns(:feedback_received)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
-  end
-
   test "should get new" do
     get :new
     assert_response :success
@@ -109,16 +103,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_template :new
   end
 
-  # test "should get edit" do
-  #   get :edit, id: @user
-  #   assert_response :success
-  # end
-  #
-  # test "should update user" do
-  #   patch :update, id: @user, user: {  }
-  #   assert_redirected_to user_path(assigns(:user))
-  # end
-
   test "should hide user if current user is an admin" do
     @controller.current_user.update_attributes!(admin: true)
     assert_no_difference 'User.count' do
@@ -126,7 +110,7 @@ class UsersControllerTest < ActionController::TestCase
       assert @user.reload.hidden_at
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to root_path
     assert_equal "User was successfully hidden.", flash[:notice]
   end
 
@@ -137,7 +121,7 @@ class UsersControllerTest < ActionController::TestCase
       assert_nil @user.reload.hidden_at
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to root_path
     assert_equal "There was a problem hiding the user.", flash[:notice]
   end
 end
