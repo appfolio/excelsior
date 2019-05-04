@@ -42,6 +42,7 @@ group :test do
   gem 'simplecov-html'
   gem 'undercover'
   gem 'pronto'
+  gem 'pronto-eslint', require: false
   gem 'pronto-rubocop', require: false
   gem 'pronto-undercover', require: false
 end
