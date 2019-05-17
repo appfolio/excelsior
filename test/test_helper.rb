@@ -2,12 +2,13 @@ require 'simplecov'
 require 'simplecov-lcov'
 
 SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+SIMPLECOV_FORMATTERS = [
   SimpleCov::Formatter::LcovFormatter,
-  SimpleCov::Formatter::HTMLFormatter,
-])
+  SimpleCov::Formatter::HTMLFormatter
+]
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(SIMPLECOV_FORMATTERS)
 SimpleCov.start do
-  add_filter(/^\/test\//) # For Minitest
+  add_filter(%r{^\/test\/}) # For Minitest
 end
 
 ENV["RAILS_ENV"] = "test"
