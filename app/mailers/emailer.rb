@@ -11,7 +11,6 @@ class Emailer < ActionMailer::Base
     @url = appreciation_url(appreciation)
     mail(from: default_from_email,
          to: @recipient.email,
-         bcc: User.where(:admin => true).map(&:email),
          subject: "We received an appreciation for #{@recipient.name} on #{Date.current}!! Yippee!")
   end
 
@@ -21,7 +20,6 @@ class Emailer < ActionMailer::Base
     @message = feedback
     mail(from: default_from_email,
          to: @recipient.email,
-         bcc: User.where(:admin => true).map(&:email),
          subject: "New feedback for #{@recipient.name} on #{Date.current}!! Excelsior!")
   end
 
@@ -31,7 +29,6 @@ class Emailer < ActionMailer::Base
     @message = comment
     mail(from: default_from_email,
          to: @message.recipient.email,
-         bcc: User.where(:admin => true).map(&:email),
          subject: "New reply to feedback for #{@feedback.recipient.name} on #{Date.current}!! Discuss!")
   end
 
