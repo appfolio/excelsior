@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :expire_hsts
-  before_filter :authenticate_user!
+  before_action :expire_hsts
+  before_action :authenticate_user!
 
   private
 

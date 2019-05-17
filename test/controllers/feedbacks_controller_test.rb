@@ -14,7 +14,7 @@ class FeedbacksControllerTest < ActionController::TestCase
 
   test "new should initialize instance variables correctly" do
     recipient = FactoryBot.create(:recipient)
-    get :new, recipient_id: recipient.id
+    get :new, params: { recipient_id: recipient.id }
     assert_equal recipient, assigns(:feedback).recipient
     assert_equal recipient.name, assigns(:recipient_name)
     assert_not_empty assigns(:recipients)
@@ -24,10 +24,14 @@ class FeedbacksControllerTest < ActionController::TestCase
     recipient = FactoryBot.create(:recipient)
     ::EmailSender.any_instance.expects(:send_email_and_set_flash).returns("This is the result.")
     assert_difference('Feedback.count') do
-      post :create, feedback: { message: @feedback.message,
-                                recipient_id: recipient.to_param,
-                                team: @feedback.team,
-                                anonymous: "1" }
+      post :create, params: {
+        feedback: {
+          message: @feedback.message,
+          recipient_id: recipient.to_param,
+          team: @feedback.team,
+          anonymous: "1"
+        }
+      }
     end
 
     assert_equal 'Gnice - your feedback was successfully created! This is the result.',
@@ -41,8 +45,12 @@ class FeedbacksControllerTest < ActionController::TestCase
   test "create should handle errors gracefully" do
     assert_no_difference 'Feedback.count' do
       assert_no_difference 'ActionMailer::Base.deliveries.size' do
-        post :create, feedback: { message: @feedback.message,
-                                      team: @feedback.team }
+        post :create, params: {
+          feedback: {
+            message: @feedback.message,
+            team: @feedback.team
+          }
+        }
       end
     end
 
@@ -52,7 +60,7 @@ class FeedbacksControllerTest < ActionController::TestCase
 
   test "should show to submitters but not update the timestamp" do
     sign_in(@feedback.submitter)
-    get :show, :id => @feedback.id
+    get :show, params: { id: @feedback.id }
     assert_response :success
     assert_equal @feedback, assigns(:feedback)
     @feedback.reload
@@ -61,7 +69,7 @@ class FeedbacksControllerTest < ActionController::TestCase
 
   test "should show to recipients and update the timestamp" do
     sign_in(@feedback.recipient)
-    get :show, :id => @feedback.id
+    get :show, params: { id: @feedback.id }
     assert_response :success
     assert_equal @feedback, assigns(:feedback)
     @feedback.reload
@@ -71,7 +79,7 @@ class FeedbacksControllerTest < ActionController::TestCase
   test "should show to recipients but not update the timestamp if it is present" do
     @feedback.update_attributes(:received_at => (Time.zone.now - 1.day))
     sign_in(@feedback.recipient)
-    get :show, :id => @feedback.id
+    get :show, params: { id: @feedback.id }
     assert_response :success
     assert_equal @feedback, assigns(:feedback)
     @feedback.reload
@@ -81,7 +89,7 @@ class FeedbacksControllerTest < ActionController::TestCase
   test "should show to admins but not update the timestamp" do
     user = FactoryBot.create(:user, admin: true)
     sign_in(user)
-    get :show, :id => @feedback.id
+    get :show, params: { id: @feedback.id }
     assert_response :success
     assert_equal @feedback, assigns(:feedback)
     @feedback.reload
@@ -92,7 +100,7 @@ class FeedbacksControllerTest < ActionController::TestCase
     assert @controller.current_user != @feedback.submitter
     assert @controller.current_user != @feedback.recipient
     assert !@controller.current_user.admin?
-    get :show, :id => @feedback.id
+    get :show, params: { id: @feedback.id }
     assert_equal "You don't have permission to see that feedback.", flash[:notice]
     assert_redirected_to appreciations_path
   end

@@ -4,7 +4,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   def test_create__html_request
     appreciation = FactoryBot.create(:appreciation)
-    post :create, :comment => { :root_id => appreciation.id, :message => 'Some message'}
+    post :create, params: { comment: { root_id: appreciation.id, message: 'Some message' } }
 
     assert_redirected_to appreciation_path(appreciation)
   end
@@ -17,7 +17,7 @@ class CommentsControllerTest < ActionController::TestCase
     feedback = FactoryBot.create(:feedback, :recipient => recipient, :submitter => submitter)
 
     sign_in(recipient)
-    xhr :post, :create, :comment => { :root_id => feedback.id, :message => 'Some message', :anonymous => true}
+    post :create, params: { comment: { root_id: feedback.id, message: "Some message", anonymous: true } }, xhr: true
 
     assert_response :success
     feedback.reload
@@ -35,7 +35,7 @@ class CommentsControllerTest < ActionController::TestCase
     feedback = FactoryBot.create(:feedback, :recipient => recipient, :submitter => submitter)
 
     sign_in(submitter)
-    xhr :post, :create, :comment => { :root_id => feedback.id, :message => 'Some message', :anonymous => true}
+    post :create, params: { comment: { root_id: feedback.id, message: "Some message", anonymous: true } }, xhr: true
 
     assert_response :success
     feedback.reload
@@ -50,7 +50,7 @@ class CommentsControllerTest < ActionController::TestCase
     sign_in(user)
     feedback = FactoryBot.create(:feedback)
     assert_no_difference 'Comment.count' do
-      xhr :post, :create, :comment => { :root_id => feedback.id, :message => nil, :submitter_id => feedback.recipient.id, :receiver_id => feedback.submitter.id}
+      post :create, params: { comment: { root_id: feedback.id, message: nil, submitter_id: feedback.recipient.id, receiver_id: feedback.submitter.id } }, xhr: true
     end
 
     assert_response :success
@@ -63,7 +63,7 @@ class CommentsControllerTest < ActionController::TestCase
     comment = FactoryBot.create(:comment)
 
     assert_no_difference 'Comment.count' do
-      xhr :post, :destroy, :id => comment.id
+      post :destroy, params: { id: comment.id }, xhr: true
       assert_response :success
     end
 
@@ -76,7 +76,7 @@ class CommentsControllerTest < ActionController::TestCase
     comment = FactoryBot.create(:comment)
 
     assert_no_difference 'Comment.count' do
-      xhr :post, :destroy, :id => comment.id
+      post :destroy, params: { id: comment.id }, xhr: true
       assert_response :success
     end
 

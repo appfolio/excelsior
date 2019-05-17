@@ -17,12 +17,8 @@ class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
 end
 
-class ActionMailer::TestCase
-  EmailDomainValidator.stubs(:allowed_email_domains).returns(["alloweddomain.com"])
-end
-
 class ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   include Warden::Test::Helpers
   Warden.test_mode!
 
@@ -32,6 +28,4 @@ class ActionController::TestCase
     user = FactoryBot.create(:user)
     sign_in(user)
   end
-
-  EmailDomainValidator.stubs(:allowed_email_domains).returns(["alloweddomain.com"])
 end

@@ -1,20 +1,19 @@
 source 'https://rubygems.org'
 
 ruby '2.4.5'
-gem 'rails', '~> 4.2.11.1'
+gem 'rails', '~> 5.0.7'
 
 gem 'pg', '~> 0'
-gem 'devise', '3.5.2'
-gem 'omniauth', '1.2.2'
-gem 'omniauth-google-oauth2', '0.2.6'
+gem 'devise', '4.6.2'
+gem 'omniauth-google-oauth2', '0.6.0'
 
 gem 'rails_12factor', '0.0.3', group: :production
 gem 'puma', '~> 3'
-gem 'jquery-rails', '4.0.5'
+gem 'jquery-rails', '4.2.2'
 
 gem 'bootstrap-sass', '~> 3.3.4'
-gem 'sass-rails', '5.0.4'
-gem 'coffee-rails', '4.1.0'
+gem 'sass-rails', '5.0.7'
+gem 'coffee-rails', '4.2.2'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
@@ -25,7 +24,8 @@ gem 'httparty', '0.13.7'
 gem 'will_paginate', '~> 3.0.6'
 
 group :development do
-  gem 'annotate', '~> 2'
+  gem 'annotate', '~> 2.7.4'
+  gem 'ten_years_rails'
 end
 
 group :development, :test do
@@ -38,6 +38,7 @@ group :test do
   gem 'mocha', '~> 1'
   gem 'webmock', '~> 1'
   gem 'simplecov', '~> 0'
+  gem 'rails-controller-testing'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
