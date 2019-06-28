@@ -1,4 +1,5 @@
-<p>Pay it forward...
-  <br/>1. Let your colleague know how much you <a href='<%= new_appreciation_url %>'>appreciate</a> them.
-  <br/>2. Provide <a href='<%= new_feedback_url %>'>constructive feedback</a> to guide them in their growth.
+<p>Pay it forward...Let your colleague know how much you <a href='<%= new_appreciation_url %>'>appreciate</a> them.
+  <% if ENV["SHOW_FEEDBACK"] %>
+    <br/>Provide <a href='<%= new_feedback_url %>'>constructive feedback</a> to guide them in their growth.
+  <% end %>
 </p>
