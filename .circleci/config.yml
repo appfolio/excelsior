@@ -33,6 +33,10 @@ jobs: # a collection of steps
             - rails-excelsior-bundle-v2-{{ checksum "Gemfile.lock" }}
             - rails-excelsior-bundle-v2-
 
+      - run: # Install pronto/rugged/libgit2 dependencies
+          name: CMake Install
+          command: sudo apt-get install cmake
+
       - run: # Install Ruby dependencies
           name: Bundle Install
           command: bundle install
@@ -60,3 +64,10 @@ jobs: # a collection of steps
       # See: https://circleci.com/docs/2.0/code-coverage/
       - store_artifacts:
           path: coverage
+
+      # validates coverage with Undercover
+      # See: https://medium.com/@mrgrodo/improve-your-ruby-code-reviews-with-actionable-code-coverage-and-undercover-c4480575ea69
+      - run:
+          name: Check coverage
+          command: |
+            bundle exec pronto run -f github_pr -c origin/master

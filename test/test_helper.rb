@@ -1,5 +1,16 @@
 require 'simplecov'
-SimpleCov.start 'rails'
+require 'simplecov-lcov'
+
+SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+FORMATTERS = [
+  SimpleCov::Formatter::LcovFormatter,
+  SimpleCov::Formatter::HTMLFormatter
+].freeze
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(FORMATTERS)
+SimpleCov.start do
+  add_filter(%r{^\/test\/}) # For Minitest
+end
+
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'

@@ -39,6 +39,13 @@ group :test do
   gem 'webmock', '~> 1'
   gem 'simplecov', '~> 0'
   gem 'rails-controller-testing'
+  gem 'simplecov-lcov'
+  gem 'simplecov-html'
+  gem 'undercover'
+  gem 'pronto'
+  gem 'pronto-eslint', require: false
+  gem 'pronto-rubocop', require: false
+  gem 'pronto-undercover', require: false
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
