@@ -3,13 +3,17 @@
   <strong>Jump To:</strong>
   <a href="#appreciations_received">Appreciations Received</a>&nbsp;
   <a href="#appreciations_sent">Appreciations Sent</a>&nbsp;
-  <a href="#feedback_received">Feedback Received</a>&nbsp;
-  <a href="#feedback_sent">Feedback Sent</a>
+  <% if ENV["SHOW_FEEDBACK"] %>
+    <a href="#feedback_received">Feedback Received</a>&nbsp;
+    <a href="#feedback_sent">Feedback Sent</a>
+  <% end  %>
   </p>
 
-  <p>
-    <%= link_to 'Copy this link to request feedback', new_feedback_path(recipient_id: @user.id) %>
-  <br />
+  <% if ENV["SHOW_FEEDBACK"] %>
+    <p>
+      <%= link_to 'Copy this link to request feedback', new_feedback_path(recipient_id: @user.id) %>
+    <br />
+  <% end %>
     <%= link_to('Copy this link to request an appreciation', new_appreciation_path(recipient_id: @user.id)) %>
   </p>
 
@@ -30,15 +34,17 @@
     <%= render :partial => '/shared/appreciations_index', locals: { messages: @appreciations_sent }%>
   </p>
 
-  <p>
-    <a name="feedback_received"></a>
-    <strong>Feedback Received</strong>
-    <%= render :partial => '/shared/feedbacks_index', locals: { messages: @feedback_received }%>
-  </p>
+  <% if ENV["SHOW_FEEDBACK"] %>
+    <p>
+      <a name="feedback_received"></a>
+      <strong>Feedback Received</strong>
+      <%= render :partial => '/shared/feedbacks_index', locals: { messages: @feedback_received }%>
+    </p>
 
-  <p>
-    <a name="feedback_sent"></a>
-    <strong>Feedback Sent</strong>
-    <%= render :partial => '/shared/feedbacks_index', locals: { messages: @feedback_sent }%>
-  </p>
+    <p>
+      <a name="feedback_sent"></a>
+      <strong>Feedback Sent</strong>
+      <%= render :partial => '/shared/feedbacks_index', locals: { messages: @feedback_sent }%>
+    </p>
+  <% end %>
 </section>
