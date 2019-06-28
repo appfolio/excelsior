@@ -13,7 +13,6 @@ gem 'jquery-rails', '4.2.2'
 
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '5.0.7'
-gem 'coffee-rails', '4.2.2'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
