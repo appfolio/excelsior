@@ -16,4 +16,3 @@ module Appreciations
   end
 end
 
-require File.join(File.dirname(__FILE__), '../lib/hideable_monkey_patch.rb')
