@@ -4,7 +4,7 @@ ruby '2.4.5'
 gem 'rails', '~> 5.0.7'
 
 gem 'pg', '~> 0'
-gem 'devise', '4.6.2'
+gem 'devise', '4.7.1'
 gem 'omniauth-google-oauth2', '0.6.0'
 
 gem 'rails_12factor', '0.0.3', group: :production
