@@ -35,17 +35,17 @@ end
 
 group :test do
   gem 'mocha', '~> 1'
-  gem 'webmock', '~> 1'
-  gem 'simplecov', '~> 0'
-  gem 'rails-controller-testing'
-  gem 'simplecov-lcov'
-  gem 'simplecov-html'
-  gem 'undercover'
   gem 'pronto'
   gem 'pronto-eslint', require: false
   gem 'pronto-rubocop', require: false
-  gem 'pronto-undercover', require: false
+  gem 'pronto-undercover', github: 'grodowski/pronto-undercover'
+  gem 'rails-controller-testing'
+  gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
+  gem 'undercover'
+  gem 'webmock', '~> 1'
 end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
