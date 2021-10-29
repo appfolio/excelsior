@@ -295,6 +295,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-darwin-19
 
 DEPENDENCIES
   annotate (~> 2.7.4)
@@ -328,7 +329,7 @@ DEPENDENCIES
   will_paginate (~> 3.0.6)
 
 RUBY VERSION
-   ruby 2.4.5p335
+   ruby 2.5.8p224
 
 BUNDLED WITH
-   1.17.3
+   2.2.0
