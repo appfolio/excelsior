@@ -31,6 +31,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 5'
   gem 'pry', '~> 0'
   gem 'pry-remote', '~> 0'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
