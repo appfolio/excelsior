@@ -14,9 +14,6 @@ gem 'jquery-rails', '4.2.2'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '5.0.7'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', :platforms => :ruby
-
 gem 'uglifier', '2.7.2'
 gem 'hideable', '0.3.1'
 gem 'httparty', '0.13.7'
@@ -46,18 +43,3 @@ group :test do
   gem 'undercover'
   gem 'webmock', '~> 1'
 end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
