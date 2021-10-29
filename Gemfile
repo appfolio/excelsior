@@ -38,7 +38,6 @@ end
 group :test do
   gem 'mocha', '~> 1'
   gem 'pronto'
-  gem 'pronto-eslint', require: false
   gem 'pronto-rubocop', require: false
   gem 'pronto-undercover', github: 'grodowski/pronto-undercover'
   gem 'rails-controller-testing'
