@@ -7,8 +7,8 @@ FORMATTERS = [
   SimpleCov::Formatter::HTMLFormatter
 ].freeze
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(FORMATTERS)
-SimpleCov.start do
-  add_filter(%r{^\/test\/}) # For Minitest
+SimpleCov.start 'rails' do
+  enable_coverage :branch
 end
 
 ENV["RAILS_ENV"] = "test"
