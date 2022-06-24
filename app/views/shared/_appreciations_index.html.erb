@@ -21,7 +21,7 @@
       </td>
 
       <td><%= link_to message.team, appreciations_path(:filters => {:team => message.team}) if message.team %></td>
-      <td class="date"><%= message.created_at.strftime "%m/%d/%Y %I:%M%p" %></td>
+      <td class="date"><%= message.created_at.strftime "%m/%d/%Y" %></td>
       <td>
         <%= link_to 'Hide', message, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? %>
       </td>

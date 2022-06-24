@@ -24,7 +24,7 @@
       </td>
       <td><%= link_to message.team, appreciations_path(:filters => {:team => message.team}) if message.team %></td>
       <td class="date">
-        <p><%= message.created_at.strftime "%m/%d/%Y %I:%M%p" %></p>
+        <p><%= message.created_at.strftime("%m/%d/%Y") %></p>
         <p><%= "#{pluralize(message.comments.count, "Comment")}" if message.comments.present? %> </p>
       </td>
 
