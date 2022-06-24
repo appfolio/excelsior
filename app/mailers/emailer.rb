@@ -23,13 +23,4 @@ class Emailer < ActionMailer::Base
          subject: "New feedback for #{@recipient.name} on #{Date.current}!! Excelsior!")
   end
 
-  def comment_email(comment)
-    @feedback = comment.root
-    @url = send(:"#{@feedback.class.name.downcase}_url", comment.root)
-    @message = comment
-    mail(from: default_from_email,
-         to: @message.recipient.email,
-         subject: "New reply to feedback for #{@feedback.recipient.name} on #{Date.current}!! Discuss!")
-  end
-
 end

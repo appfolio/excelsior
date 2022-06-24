@@ -33,19 +33,4 @@ class EmailerTest < ActionMailer::TestCase
     assert email.body.to_s.include?('http://localhost:5000/feedback'), email.body.to_s
   end
 
-  def test_comment_email
-    recipient = FactoryBot.create(:user, email: 'hey@alloweddomain.com')
-    submitter = FactoryBot.create(:user)
-    feedback = FactoryBot.create(:feedback, :recipient => recipient, :submitter => submitter)
-    comment = FactoryBot.create(:comment, :recipient => recipient, :submitter => submitter, :anonymous => true, :root => feedback)
-    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      Emailer.comment_email(comment).deliver_now
-    end
-
-    email = ActionMailer::Base.deliveries.last
-    assert_equal "New reply to feedback for #{feedback.recipient.name} on #{Date.current}!! Discuss!", email.subject
-    assert_equal 'hey@alloweddomain.com', email.to[0]
-    assert email.body.to_s.include?("http://localhost:5000/feedbacks/#{comment.root.id}"), email.body.to_s
-  end
-
 end
