@@ -42,9 +42,6 @@
               <li role="presentation" class="<%= active?('new', 'appreciations') %>">
                 <%= link_to 'New Appreciation', new_appreciation_path, class: 'button button--small' %>
               </li>
-              <li role="presentation" class="<%= active?('new', 'feedbacks') %>">
-                <%= link_to 'New Feedback', new_feedback_path, class: 'button button--small' %>
-              </li>
               <li role="presentation" class="<%= active?('show', 'users') %>" style="float:right;"><%= link_to 'My Messages', user_path(current_user), class: 'lite-button' %></li>
             </ul>
 

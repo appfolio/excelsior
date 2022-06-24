@@ -17,10 +17,6 @@ GO AFTER THE REQUIRES BELOW.
 */
 
 $(document).ready(function() {
-  $('.js-anonymous').on('click', function() {
-    $('.douche-warning').toggle($(this).prop('checked'));
-  });
-
   $('.js-clickable').on('click', function() {
     window.open($(this).data('link'), '_blank');
   });

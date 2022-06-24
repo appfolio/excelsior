@@ -43,11 +43,4 @@ class SlackSenderTest < ActiveSupport::TestCase
     response = sender.send_slack_message
     assert_equal 'success!', response.body
   end
-
-  def test_slack_sender__refuse_feedback
-    feedback = FactoryBot.create(:feedback)
-    HTTParty.expects(:post).never
-
-    response = ::SlackSender.new(feedback).send_slack_message
-  end
 end
