@@ -41,7 +41,7 @@ class MessageTest < ActiveSupport::TestCase
     assert_equal [appreciation], Appreciation.index
 
     appreciation.hide!
-    assert_equal Time.now.to_s, appreciation.hidden_at.to_s
+    assert_equal Time.zone.now.to_s, appreciation.hidden_at.to_s
 
     assert_equal [], Appreciation.not_hidden
     assert_equal [appreciation], Appreciation.all
