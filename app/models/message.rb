@@ -21,8 +21,8 @@ class Message < ActiveRecord::Base
   extend Hideable::ActiveRecord
   hideable
 
-  belongs_to :recipient, :class_name => User
-  belongs_to :submitter, :class_name => User
+  belongs_to :recipient, :class_name => "User"
+  belongs_to :submitter, :class_name => "User"
 
   validates_presence_of :message, :recipient, :submitter
 
