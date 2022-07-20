@@ -109,20 +109,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "heythere", user.password
   end
 
-  test "appreciations_received appreciations_sent feedback_received feedback_sent" do
+  test "appreciations_received appreciations_sent" do
     user = FactoryBot.create(:user)
     appreciation_received = FactoryBot.create(:appreciation, :recipient => user)
     appreciation_sent = FactoryBot.create(:appreciation, :submitter => user)
     rando_appreciation = FactoryBot.create(:appreciation)
 
-    feedback_received = FactoryBot.create(:feedback, :recipient => user)
-    feedback_sent = FactoryBot.create(:feedback, :submitter => user)
-    rando_feedback = FactoryBot.create(:feedback)
-
     assert_equal [appreciation_received], user.appreciations_received
     assert_equal [appreciation_sent], user.appreciations_sent
-    assert_equal [feedback_received], user.feedback_received
-    assert_equal [feedback_sent], user.feedback_sent
   end
 
 end

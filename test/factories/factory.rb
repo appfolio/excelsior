@@ -23,17 +23,4 @@ FactoryBot.define do
     association :recipient
     association :submitter
   end
-
-  factory :feedback, :aliases => [:root] do
-    message {'You could take a little more pride in your code. Seriously, copy and pasting everything between Appreciations and Feedbacks?'}
-    association :recipient
-    association :submitter
-  end
-
-  factory :comment do
-    message {'I do not think that feedback was very clear'}
-    association :recipient
-    association :submitter
-    association :root
-  end
 end

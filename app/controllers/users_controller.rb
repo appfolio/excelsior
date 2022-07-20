@@ -4,13 +4,6 @@ class UsersController < ApplicationController
   def show
     @appreciations_received = @user.appreciations_received
     @appreciations_sent = @user.appreciations_sent
-
-    @feedback_received = @user.feedback_received
-    @feedback_sent = @user.feedback_sent
-    if !current_user.admin? && @user != current_user
-      @feedback_received = @feedback_received.where(:submitter => current_user)
-      @feedback_sent = @feedback_sent.where(:recipient => current_user)
-    end
   end
 
   def new

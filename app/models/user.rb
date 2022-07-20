@@ -31,8 +31,6 @@ class User < ActiveRecord::Base
 
   has_many :appreciations_received, foreign_key: "recipient_id", class_name: Appreciation
   has_many :appreciations_sent, foreign_key: "submitter_id", class_name: Appreciation
-  has_many :feedback_received, foreign_key: "recipient_id", class_name: Feedback
-  has_many :feedback_sent, foreign_key: "submitter_id", class_name: Feedback
   has_many :messages_sent, foreign_key: "submitter_id", class_name: Message
   has_many :messages_received, foreign_key: "recipient_id", class_name: Message
 

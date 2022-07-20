@@ -52,6 +52,11 @@ jobs: # a collection of steps
           command: bin/rake db:schema:load --trace
 
       - run:
+          name: Run latest migrations
+          command: |
+            STEP=2 bundle exec rake db:rollback db:migrate
+
+      - run:
           name: Run test in serial
           command: |
             bundle exec rake test

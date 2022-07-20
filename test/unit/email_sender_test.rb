@@ -8,13 +8,6 @@ class EmailSenderTest < ActiveSupport::TestCase
     Emailer.any_instance.stubs(:default_from_email).returns("admin@alloweddomain.com")
   end
 
-  def test_sends_correct_email_type__feedback
-    recipient = FactoryBot.create(:recipient, email: 'hey@alloweddomain.com')
-    feedback = FactoryBot.create(:feedback, recipient: recipient)
-    Emailer.expects(:feedback_email).with(feedback).returns(stub(:deliver_now => true))
-    ::EmailSender.new(feedback).send_email_and_set_flash
-  end
-
   def test_sends_correct_email_type__appreciation
     recipient = FactoryBot.create(:recipient, email: 'hey@alloweddomain.com')
     appreciation = FactoryBot.create(:appreciation, recipient: recipient)
@@ -24,14 +17,14 @@ class EmailSenderTest < ActiveSupport::TestCase
 
   def test_sends_email__associated_domain
     recipient = FactoryBot.create(:recipient, email: 'hey@alloweddomain.com')
-    feedback = FactoryBot.create(:feedback, recipient: recipient)
+    appreciation = FactoryBot.create(:appreciation, recipient: recipient)
 
     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      flash = ::EmailSender.new(feedback).send_email_and_set_flash
+      flash = ::EmailSender.new(appreciation).send_email_and_set_flash
 
       email = ActionMailer::Base.deliveries.last
       assert_equal 'hey@alloweddomain.com', email.to[0]
-      assert_equal 'We sent the recipient email notification of this feedback.',
+      assert_equal 'We sent the recipient email notification of this appreciation.',
                    flash
     end
   end

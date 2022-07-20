@@ -23,7 +23,6 @@ class Message < ActiveRecord::Base
 
   belongs_to :recipient, :class_name => User
   belongs_to :submitter, :class_name => User
-  has_many :comments, :foreign_key => :root_id
 
   validates_presence_of :message, :recipient, :submitter
 
