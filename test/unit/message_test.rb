@@ -24,7 +24,13 @@ class MessageTest < ActiveSupport::TestCase
   test "valid" do
     appreciation = Appreciation.new
     assert !appreciation.valid?
-    assert_equal ["Message can't be blank", "Recipient can't be blank", "Submitter can't be blank"],
+    assert_equal [
+                   "Recipient must exist",
+                   "Recipient can't be blank",
+                   "Submitter must exist",
+                   "Submitter can't be blank",
+                   "Message can't be blank"
+                 ],
                  appreciation.errors.full_messages
   end
 
