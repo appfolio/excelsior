@@ -24,6 +24,7 @@ gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem 'annotate', '~> 2.7.4'
+  gem 'listen'
   gem 'next_rails'
 end
 
