@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validate :email_domain_is_associated
   before_validation :set_password
 
-  scope :index, -> { not_hidden }
+  scope :visible, -> { not_hidden }
 
   def set_password
     self.password = Devise.friendly_token[0, 20] if password.blank?

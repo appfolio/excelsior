@@ -26,7 +26,7 @@ class Message < ActiveRecord::Base
 
   validates_presence_of :message, :recipient, :submitter
 
-  scope :index, -> { not_hidden.order('created_at DESC') }
+  scope :visible, -> { not_hidden.order('created_at DESC') }
 
   before_save do
     team.try(:downcase!)

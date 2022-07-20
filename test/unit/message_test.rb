@@ -35,16 +35,16 @@ class MessageTest < ActiveSupport::TestCase
     assert_equal "team", appreciation.team
   end
 
-  test "index scope" do
+  test "visible scope" do
     appreciation = FactoryBot.create(:appreciation)
     assert_equal [appreciation], Appreciation.all
-    assert_equal [appreciation], Appreciation.index
+    assert_equal [appreciation], Appreciation.visible
 
     appreciation.hide!
     assert_equal Time.zone.now.to_s, appreciation.hidden_at.to_s
 
     assert_equal [], Appreciation.not_hidden
     assert_equal [appreciation], Appreciation.all
-    assert_equal [], Appreciation.index
+    assert_equal [], Appreciation.visible
   end
 end
