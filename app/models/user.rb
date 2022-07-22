@@ -29,15 +29,15 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  has_many :appreciations_received, foreign_key: "recipient_id", class_name: Appreciation
-  has_many :appreciations_sent, foreign_key: "submitter_id", class_name: Appreciation
-  has_many :messages_sent, foreign_key: "submitter_id", class_name: Message
-  has_many :messages_received, foreign_key: "recipient_id", class_name: Message
+  has_many :appreciations_received, foreign_key: "recipient_id", class_name: "Appreciation"
+  has_many :appreciations_sent, foreign_key: "submitter_id", class_name: "Appreciation"
+  has_many :messages_sent, foreign_key: "submitter_id", class_name: "Message"
+  has_many :messages_received, foreign_key: "recipient_id", class_name: "Message"
 
   validate :email_domain_is_associated
   before_validation :set_password
 
-  scope :index, -> { not_hidden }
+  scope :visible, -> { not_hidden }
 
   def set_password
     self.password = Devise.friendly_token[0, 20] if password.blank?

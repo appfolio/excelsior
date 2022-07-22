@@ -3,7 +3,7 @@ class AppreciationsController < ApplicationController
 
   # GET /appreciations
   def index
-    @appreciations = Appreciation.index
+    @appreciations = Appreciation.visible
     if filters = params[:filters]
       @by = User.find_by_id(filters[:submitter_id]).try(:name)
       recipient = User.find_by_id(filters[:recipient_id]).try(:name)
