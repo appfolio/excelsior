@@ -25,11 +25,11 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  test "user visible" do
+  test "user index" do
     user1 = FactoryBot.create(:user, :email => 'my_email@alloweddomain.com')
     user2 = FactoryBot.create(:user, :email => 'my_email2@alloweddomain.com', :hidden_at => Time.now)
 
-    assert_equal [user1], User.visible
+    assert_equal [user1], User.index
     assert_equal [user1, user2], User.all.order(:id)
   end
 

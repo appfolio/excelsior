@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_recipients
-    @recipients ||=  User.visible.sort { |a, b| a.name <=> b.name }.map {|u| { label: u.name, value: u.id }}
+    @recipients ||=  User.index.sort { |a, b| a.name <=> b.name }.map {|u| { label: u.name, value: u.id }}
   end
 
   def expire_hsts
