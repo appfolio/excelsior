@@ -20,7 +20,7 @@ gem 'sass-rails', '5.0.7'
 gem 'uglifier', '2.7.2'
 gem 'hideable', '0.3.1'
 gem 'httparty', '0.13.7'
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate', '>= 3.1.7', '< 4'
 
 group :development do
   gem 'annotate', '~> 2.7.4'
