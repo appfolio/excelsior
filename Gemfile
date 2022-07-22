@@ -1,7 +1,10 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
 source 'https://rubygems.org'
 
 ruby '2.5.8'
-gem 'rails', '~> 5.0.7'
+gem 'rails', '5.2.8.1'
 
 gem 'pg', '~> 0'
 gem 'devise', '4.6.2'
@@ -21,7 +24,8 @@ gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem 'annotate', '~> 2.7.4'
-  gem 'ten_years_rails'
+  gem 'listen'
+  gem 'next_rails'
 end
 
 group :development, :test do
