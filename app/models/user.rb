@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     email = data['email'].downcase
     user = User.where(:email => email).first
 
-    raise "This user is hidden!" if user && user.hidden?
+    raise "This user is hidden!" if user && user.hidden_at.present?
 
     if user.blank?
       first_name, last_name = chomp_user_name(data['name'])
