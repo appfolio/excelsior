@@ -3,7 +3,7 @@ def next?
 end
 source 'https://rubygems.org'
 
-ruby '2.5.8'
+ruby '2.7.8'
 gem 'rails', '5.2.8.1'
 
 gem 'pg', '~> 0'
