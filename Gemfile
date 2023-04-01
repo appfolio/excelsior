@@ -29,6 +29,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'deprecation_toolkit', '~> 2', require: false
   gem 'factory_bot_rails', '~> 5'
   gem 'pry', '~> 0'
   gem 'pry-remote', '~> 0'
