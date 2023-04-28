@@ -27,6 +27,13 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Tell Action Mailer not to deliver emails to the real world.
+  # The :file delivery method writes to tmp/mails
+  # See: https://github.com/rails/rails/blob/8030cff808657faa44828de001cd3b80364597de/actionmailer/lib/action_mailer/delivery_methods.rb#L29
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.default_url_options = { :host => 'localhost:5000' }
+  Rails.application.routes.default_url_options[:host] = 'localhost:5000'
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
