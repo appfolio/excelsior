@@ -1,4 +1,6 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - ./rubocop/cop/lint/last_keyword_argument
 
 AllCops:
   NewCops: enable

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 require 'simplecov-lcov'
+require './test/deprecation_toolkit_env'
 
 SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
 FORMATTERS = [

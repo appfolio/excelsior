@@ -70,6 +70,8 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
+    deprecation_toolkit (2.0.3)
+      activesupport (>= 5.2)
     devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -304,6 +306,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 2.7.4)
   bootstrap-sass (~> 3.3.4)
+  deprecation_toolkit (~> 2)
   devise (= 4.6.2)
   factory_bot_rails (~> 5)
   hideable (= 0.3.1)
@@ -334,7 +337,7 @@ DEPENDENCIES
   will_paginate (>= 3.1.7, < 4)
 
 RUBY VERSION
-   ruby 2.5.8p224
+   ruby 2.7.8p225
 
 BUNDLED WITH
-   2.2.0
+   2.4.10

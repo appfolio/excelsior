@@ -3,7 +3,7 @@ def next?
 end
 source 'https://rubygems.org'
 
-ruby '2.5.8'
+ruby '2.7.8'
 gem 'rails', '5.2.8.1'
 
 gem 'pg', '~> 0'
@@ -29,6 +29,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'deprecation_toolkit', '~> 2', require: false
   gem 'factory_bot_rails', '~> 5'
   gem 'pry', '~> 0'
   gem 'pry-remote', '~> 0'

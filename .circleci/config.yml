@@ -3,7 +3,7 @@ jobs: # a collection of steps
   build-test:
     parallelism: 1
     docker: # run the steps with Docker
-      - image: cimg/ruby:2.5.8-node # ...with this image as the primary container; this is where all `steps` will run
+      - image: cimg/ruby:2.7.8-node # ...with this image as the primary container; this is where all `steps` will run
         environment: # environment variables for primary container
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
