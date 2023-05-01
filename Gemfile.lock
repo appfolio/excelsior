@@ -66,7 +66,7 @@ GEM
     builder (3.2.4)
     coderay (1.1.2)
     colorize (0.8.1)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.10)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -92,7 +92,7 @@ GEM
     gitlab (4.3.0)
       httparty
       terminal-table
-    globalid (1.0.0)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     hashdiff (0.4.0)
     hashie (3.6.0)
