@@ -12,7 +12,7 @@ gem 'omniauth-google-oauth2', '0.6.0'
 
 gem 'rails_12factor', '0.0.3', group: :production
 gem 'puma', '~> 3'
-gem 'jquery-rails', '4.2.2'
+gem 'jquery-rails', '4.4.0'
 
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '5.0.7'
